@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration><!-- <environments default="development"> <environment id="development">
+		<transactionManager type="JDBC" /> <dataSource type="POOLED"> <property name="driver"
+		value="${driver}" /> <property name="url" value="${url}" /> <property name="username"
+		value="${username}" /> <property name="password" value="${password}" /> </dataSource>
+		</environment> </environments> <mappers> <mapper resource="com/dky/distance/staticTable/userinfoMapping.xml"
+		/> </mappers> -->
+    <typeAliases>
+        <typeAlias alias="users" type="com.ports.bean.Users" />
+    </typeAliases>
+    <!-- 控制台输出收起来的功能
+    <plugins>
+         上线时关闭，调试的时候打印SQL使用。插件顺序不要调换
+        <plugin interceptor="com.art.utils.SQLInterceptor"/>
+
+    </plugins>
+
+    <mappers>
+        <mapper resource="com/art/mapping/userMappingddd.xml" />
+    </mappers>
+-->
+</configuration>

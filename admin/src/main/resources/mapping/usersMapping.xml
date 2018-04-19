@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"/mybatis-3-mapper.dtd">
+<mapper namespace="com.ports.dao.UsersDao">
+
+	<!-- Result Map -->
+	<resultMap type="com.ports.bean.Users" id="BaseResultMap">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="password" column="password" />
+		<result property="sex" column="sex" />
+		<result property="birthday" column="birthday" jdbcType="TIMESTAMP" />
+		<result property="insertDate" column="insertDate" jdbcType="TIMESTAMP" />
+		<result property="message" column="message" jdbcType="CLOB"
+				javaType="java.lang.String" />
+	</resultMap>
+
+	<!-- 表中所有列 -->
+	<sql id="Base_Column_List">
+		id,name,password,sex,birthday,insertDate,message
+	</sql>
+
+	<!-- 1.新增记录,message,,birthday,insertDate,#{message,type=CLOB},#{birthday,jdbcType=DATE},#{insertDate,jdbcType=TIMESTAMP} -->
+	<insert id="add" parameterType="com.ports.bean.Users">
+		insert into
+		users(id,name,password,sex,birthday,message,insertDate)
+		values(#{id},#{name},#{password},#{sex},#{birthday,jdbcType=DATE},#{message,jdbcType=CLOB},sysdate)
+	</insert>
+	<!-- 2.查询记录条数count -->
+	<select id="getCount" parameterType="java.util.Map" resultType="long">
+		select count(*) from users where 1=1
+		<if test="sex != null and sex != '' "> and sex = #{sex} </if>
+		<if test="name != null and name != '' "> and name like '%${name}%' </if>
+	</select>
+	<!-- 3.分页的查询记录 -->
+	<select id="getPage" parameterType="com.ports.bean.PageModel"
+			resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from (select t.*,rownum ro from (select * from users t where 1=1
+		<if test="conditions.sex != null and conditions.sex != '' "> and sex = #{conditions.sex} </if>
+		<if test="conditions.name != null and conditions.name != '' "> and name like '%${conditions.name}%' </if>
+		order by name
+		) t
+		) where ro between #{begin} and #{end}
+
+	</select>
+	<!-- 4.根据id进行删除 -->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from users where
+		id = #{id}
+	</delete>
+	<!-- 5.根据id查询 -->
+	<select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from users where id = #{id}
+	</select>
+
+	<!-- 5.根据id修改记录 -->
+	<update id="updateById" parameterType="com.ports.bean.Users" statementType="STATEMENT">
+		update users set
+		name=#{name},sex=#{sex},birthday=#{birthday},message=#{message}
+		where
+		id=#{id}
+	</update>
+
+	<!-- 6.只修改不为空的字段 -->
+	<update id="updateBySelective" parameterType="com.ports.bean.Users">
+		update users set
+		<trim suffixOverrides=",">
+			<if test="name != null  and name != '' ">
+				name=#{name},
+			</if>
+			<if test="sex != null  and sex != '' ">
+				sex=#{sex},
+			</if>
+			<if test="birthday != null">
+				birthday=#{birthday},
+			</if>
+			<if test="message != null  and message != '' ">
+				message=#{message},
+			</if>
+		</trim>
+		where id=#{id}
+	</update>
+
+</mapper>

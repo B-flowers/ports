@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+    <!--
+    1.引入jar，sitemesh.jar
+    2.配置web.xml
+    默认情况下，sitemesh 只对 HTTP 响应头中 Content-Type 为 text/html 的类型进行拦截和装饰，我们可以添加更多的 mime 类型
+
+    -->
+    <mime-type>text/html</mime-type>
+    <mime-type>application/xhtml+xml</mime-type>
+    <!-- 指明满足“/*”的页面，将被装饰 -->
+    <mapping path="/main/*" decorator="/pages/decorator/main.jsp" />
+
+    <!-- 指明满足“/exclude.jsp*”的页面，将被排除，不被装饰 -->
+    <mapping path="/login.*" exclue="true" />
+    <mapping path="/main/login.*" exclue="true" />
+</sitemesh>
