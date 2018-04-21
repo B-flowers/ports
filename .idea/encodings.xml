@@ -2,6 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/README.md" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/admin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/admin/src/main/java/com/ports/bean/PageModel.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/admin/src/main/java/com/ports/controller/Login.java" charset="GBK" />
@@ -34,7 +35,6 @@
     <file url="file://$PROJECT_DIR$/admin/src/main/resources/jdbc.properties" charset="GBK" />
     <file url="file://$PROJECT_DIR$/admin/src/main/resources/mapping/usersMapping.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/admin/src/main/resources/mybatis-3-mapper.dtd" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/admin/src/main/resources/sitemesh3.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/admin/src/main/webapp/WEB-INF/sitemesh3.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/admin/src/main/webapp/WEB-INF/web.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/admin/src/main/webapp/index.jsp" charset="GBK" />
